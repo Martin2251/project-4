@@ -11,6 +11,9 @@ const app = express();
 app.use(morgan("dev"));
 
 app.use(express.json({limite: "30mb", extended:true}));
+app.use(express.urlencoded({limite: "30mb", extended:true}));
+
+const MONGODB_URL = "mongodb+srv://martincode:Portsmouth22@cluster0.bha2m.mongodb.net/tour_db?retryWrites=true&w=majority"
 
 const port = 5000;
 
