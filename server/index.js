@@ -12,15 +12,14 @@ app.use(morgan("dev"));
 
 app.use(express.json({limite: "30mb", extended:true}));
 app.use(express.urlencoded({limite: "30mb", extended:true}));
+app.use(cors());
 
 const MONGODB_URL = "mongodb+srv://martincode:Portsmouth22@cluster0.bha2m.mongodb.net/tour_db?retryWrites=true&w=majority"
 
 const port = 5000;
 
-app.get("/", (req,res) => {
-    res.send("hELLO EXPRESS");
-});
-
-app.listen(port, () => {
-    console.log(`server running on port ${port}`);
-})
+mongoose.connect(MONGODB_URL).then(() =>{
+    app.listen(port, () =>
+        console.log(`Server running on ${port}`)
+    )
+}).catch((error) => console.log(`${error} did not connect`))
